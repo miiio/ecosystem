@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/ecosystem">
+        <file>Resources/background.jpg</file>
+        <file>Resources/cattle.png</file>
+        <file>Resources/chick.png</file>
+        <file>Resources/deer.png</file>
+        <file>Resources/elephant.png</file>
+        <file>Resources/lion.png</file>
+        <file>Resources/tiger.png</file>
+        <file>Resources/pig.png</file>
+        <file>Resources/wolf.png</file>
+        <file>Resources/bone.png</file>
+        <file>Resources/grass.png</file>
+    </qresource>
+</RCC>

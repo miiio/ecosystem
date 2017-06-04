@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ecosystemClass</class>
+ <widget class="QWidget" name="ecosystemClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1108</width>
+    <height>709</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>ecosystem</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>2</width>
+     <height>600</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border:2px solid;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>950</x>
+     <y>20</y>
+     <width>120</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>运行</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>950</x>
+     <y>140</y>
+     <width>120</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>停止</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEdit">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>640</y>
+     <width>901</width>
+     <height>38</height>
+    </rect>
+   </property>
+   <property name="html">
+    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>950</x>
+     <y>200</y>
+     <width>120</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>配置</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_4">
+   <property name="geometry">
+    <rect>
+     <x>950</x>
+     <y>80</y>
+     <width>120</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>暂停</string>
+   </property>
+  </widget>
+  <widget class="QSlider" name="horizontalSlider">
+   <property name="geometry">
+    <rect>
+     <x>960</x>
+     <y>650</y>
+     <width>121</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>1950</number>
+   </property>
+   <property name="value">
+    <number>1400</number>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>919</x>
+     <y>20</y>
+     <width>2</width>
+     <height>600</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border:2px solid;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>900</width>
+     <height>2</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border:2px solid;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>620</y>
+     <width>900</width>
+     <height>2</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border:2px solid;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEdit_2">
+   <property name="geometry">
+    <rect>
+     <x>950</x>
+     <y>450</y>
+     <width>131</width>
+     <height>171</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_5">
+   <property name="geometry">
+    <rect>
+     <x>950</x>
+     <y>260</y>
+     <width>120</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>保存</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_6">
+   <property name="geometry">
+    <rect>
+     <x>950</x>
+     <y>320</y>
+     <width>120</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>加载</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_7">
+   <property name="geometry">
+    <rect>
+     <x>950</x>
+     <y>380</y>
+     <width>121</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>地震</string>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="ecosystem.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ecosystemClass</receiver>
+   <slot>btnRunClick()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>893</x>
+     <y>56</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>944</x>
+     <y>47</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>ecosystemClass</receiver>
+   <slot>btnStopClick()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1060</x>
+     <y>228</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>901</x>
+     <y>219</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>ecosystemClass</receiver>
+   <slot>btnSettingClick()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1126</x>
+     <y>314</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1122</x>
+     <y>328</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_4</sender>
+   <signal>clicked()</signal>
+   <receiver>ecosystemClass</receiver>
+   <slot>btnPauseClick()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1108</x>
+     <y>151</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1042</x>
+     <y>150</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_5</sender>
+   <signal>clicked()</signal>
+   <receiver>ecosystemClass</receiver>
+   <slot>btnSaveClick()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1131</x>
+     <y>392</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1039</x>
+     <y>384</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_6</sender>
+   <signal>clicked()</signal>
+   <receiver>ecosystemClass</receiver>
+   <slot>btnLoadClick()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1106</x>
+     <y>459</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1042</x>
+     <y>460</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>btnRunClick()</slot>
+  <slot>btnStopClick()</slot>
+  <slot>btnSettingClick()</slot>
+  <slot>btnPauseClick()</slot>
+  <slot>btnSaveClick()</slot>
+  <slot>btnLoadClick()</slot>
+ </slots>
+</ui>
