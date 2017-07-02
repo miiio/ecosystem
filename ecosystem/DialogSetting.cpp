@@ -34,7 +34,7 @@ void DialogSetting::btnLoadClick()
 	if (!file_name.isNull())
 	{
 		SettingData tmp;
-		tmp.loadFromFile("config.sd");
+		tmp.loadFromFile(file_name);
 		setControls(tmp);
 		QMessageBox::information(this, "notice", "Load!");
 	}

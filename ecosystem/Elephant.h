@@ -5,9 +5,8 @@ class Elephant :
 {
 public:
 	Elephant();
-	Elephant(int x, int y, int hp, int age, int rank, QString name,
-		QString sex, int speed, int attackrange, int creattime, int size);
+	bool isPredator() { return false; }; //是否是捕食者
+	virtual int reproduce(Animal* other, SettingData* sd, QString& text); //繁殖规则，返回数量
 	~Elephant();
-	int eat(Animal* other);
 };
 

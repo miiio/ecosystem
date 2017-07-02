@@ -234,7 +234,7 @@
      <number>100</number>
     </property>
     <property name="value">
-     <number>10</number>
+     <number>15</number>
     </property>
    </widget>
    <widget class="QLabel" name="label_7">
@@ -304,7 +304,7 @@
      <number>1000</number>
     </property>
     <property name="value">
-     <number>1000</number>
+     <number>400</number>
     </property>
    </widget>
    <widget class="QSpinBox" name="spinBox_size_2">
@@ -377,7 +377,7 @@
      <number>100</number>
     </property>
     <property name="value">
-     <number>20</number>
+     <number>15</number>
     </property>
    </widget>
    <widget class="QLabel" name="label_type_2">
@@ -415,7 +415,7 @@
      <number>100</number>
     </property>
     <property name="value">
-     <number>10</number>
+     <number>15</number>
     </property>
    </widget>
    <widget class="QLabel" name="label_11">
@@ -450,7 +450,7 @@
      <number>100</number>
     </property>
     <property name="value">
-     <number>10</number>
+     <number>15</number>
     </property>
    </widget>
    <widget class="QSpinBox" name="spinBox_hp_3">
@@ -466,7 +466,7 @@
      <number>1000</number>
     </property>
     <property name="value">
-     <number>1000</number>
+     <number>500</number>
     </property>
    </widget>
    <widget class="QSpinBox" name="spinBox_size_3">
@@ -542,7 +542,7 @@
      <number>100</number>
     </property>
     <property name="value">
-     <number>20</number>
+     <number>25</number>
     </property>
    </widget>
    <widget class="QLabel" name="label_12">
@@ -577,7 +577,7 @@
      <number>100</number>
     </property>
     <property name="value">
-     <number>10</number>
+     <number>12</number>
     </property>
    </widget>
    <widget class="QSpinBox" name="spinBox_hp_4">
@@ -669,7 +669,7 @@
      <number>100</number>
     </property>
     <property name="value">
-     <number>20</number>
+     <number>15</number>
     </property>
    </widget>
    <widget class="QLabel" name="label_13">
@@ -685,7 +685,7 @@
      <enum>Qt::LeftToRight</enum>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;4&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;3&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QSpinBox" name="spinBox_number_5">
@@ -720,7 +720,7 @@
      <number>1000</number>
     </property>
     <property name="value">
-     <number>1000</number>
+     <number>600</number>
     </property>
    </widget>
    <widget class="QSpinBox" name="spinBox_size_5">
@@ -796,7 +796,7 @@
      <number>100</number>
     </property>
     <property name="value">
-     <number>20</number>
+     <number>27</number>
     </property>
    </widget>
    <widget class="QLabel" name="label_14">
@@ -923,7 +923,7 @@
      <number>100</number>
     </property>
     <property name="value">
-     <number>20</number>
+     <number>15</number>
     </property>
    </widget>
    <widget class="QLabel" name="label_15">
@@ -974,7 +974,7 @@
      <number>1000</number>
     </property>
     <property name="value">
-     <number>1000</number>
+     <number>600</number>
     </property>
    </widget>
    <widget class="QSpinBox" name="spinBox_size_7">
@@ -1050,7 +1050,10 @@
      <number>100</number>
     </property>
     <property name="value">
-     <number>20</number>
+     <number>26</number>
+    </property>
+    <property name="displayIntegerBase">
+     <number>10</number>
     </property>
    </widget>
    <widget class="QSpinBox" name="spinBox_speed_8">
@@ -1069,7 +1072,7 @@
      <number>100</number>
     </property>
     <property name="value">
-     <number>20</number>
+     <number>22</number>
     </property>
    </widget>
    <widget class="QLabel" name="label_16">
@@ -1101,7 +1104,7 @@
      <number>1000</number>
     </property>
     <property name="value">
-     <number>1000</number>
+     <number>500</number>
     </property>
    </widget>
    <widget class="QSpinBox" name="spinBox_size_8">
@@ -1391,7 +1394,7 @@
      <number>100</number>
     </property>
     <property name="value">
-     <number>5</number>
+     <number>3</number>
     </property>
    </widget>
    <widget class="QLabel" name="label_20">
@@ -1453,7 +1456,7 @@
      <number>100</number>
     </property>
     <property name="value">
-     <number>80</number>
+     <number>65</number>
     </property>
    </widget>
    <widget class="QLabel" name="label_22">
@@ -1515,7 +1518,7 @@
      <number>100</number>
     </property>
     <property name="value">
-     <number>40</number>
+     <number>80</number>
     </property>
    </widget>
    <widget class="QLabel" name="label_24">

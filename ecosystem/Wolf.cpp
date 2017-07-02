@@ -2,24 +2,28 @@
 
 Wolf::Wolf()
 {
-	mTypeId = PIXWOLF;
+	setTypeId(PIXWOLF);
 }
 
-Wolf::Wolf(int x, int y, int hp, int age, int rank, QString name, 
-	QString sex, int speed, int attackrange, int creattime, int size)
-
-	:Animal( x,  y,  hp,  age,  rank,  name,
-		 sex,  speed,  attackrange, PIXWOLF,  creattime,  size)
+//扑食规则 返回：0-没有发生扑食， 1-吃掉了，2-自己被吃掉了
+int Wolf::eat(Animal * other, QString & text)
 {
-
+	if (typeid(other) == typeid(Wolf)) //同类
+	{
+		if (SettingData::getRandNum(1, 2)==1)
+		{
+			other->addHp_percentage(-10);
+			return 0;
+		}
+		else
+		{
+			addHp_percentage(-10);
+			return 0;
+		}
+	}
+	return eat_default(other,text);
 }
-
 
 Wolf::~Wolf()
 {
-}
-
-int Wolf::eat(Animal * other)
-{
-	return 1;
 }

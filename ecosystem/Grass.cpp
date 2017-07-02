@@ -4,12 +4,15 @@
 
 Grass::Grass()
 {
-}
-
-Grass::Grass(int x,int y) :
-	Organism(x, y, 10, 0, 0, "grass", 10, -1, SettingData::mGrassSize)
-{
-
+	//Organism(int x, int y, int hp, int age, int rank, QString name, int type, int creattime, int size);
+	setTotalHp(SettingData::mGrassHp);
+	setHp(getTotalHp());
+	setAge(0);
+	setRank(-1);
+	setName("grass");
+	setTypeId(10);
+	setCreatTime(0);
+	setSize(SettingData::mGrassSize);
 }
 
 
@@ -21,22 +24,24 @@ QString Grass::Info()
 {
 	QString str;
 	str += "  Grass ";
-	str += "Hp : " + QString::number(mHp_cur, 10) + "\n";
-	str += "Coordinate : " + QString::number(mX, 10) + "," + QString::number(mY, 10);
+	str += "Hp : " + QString::number(getHp(), 10) + "\n";
+	str += "Coordinate : " + QString::number(getX(), 10) + "," + QString::number(getY(), 10);
 	return str;
 }
 
 
 void Grass::saveInfo(QSettings* setting, QString key)
 {
-	setting->setValue(key + "mX", mX);
-	setting->setValue(key + "mY", mY);
-	setting->setValue(key + "mHp_cur", mHp_cur);
+	setting->setValue(key + "mX", getX());
+	setting->setValue(key + "mY",getY());
+	setting->setValue(key + "mHp_cur", getHp());
 }
 
-void Grass::loadInfo(QSettings * setting, QString key, SettingData* sd)
+bool Grass::loadInfo(QSettings * setting, QString key, SettingData* sd)
 {
-	mX = setting->value(key + "mX").toInt();
-	mY =setting->value(key + "mY").toInt(); //位置
-	mHp_cur = setting->value(key + "mHp_cur").toInt(); //修改血量
+	bool ret = true;
+	ret=ret&&	setX(setting->value(key + "mX").toInt());
+	ret = ret&&	setY(setting->value(key + "mY").toInt()); //位置
+	ret = ret&&	setHp(setting->value(key + "mHp_cur").toInt()); //修改血量
+	return ret;
 }

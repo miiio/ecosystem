@@ -1,5 +1,4 @@
 #include "ecosystem.h"
-
 void delaymsec(unsigned msec)
 {
 	QTime dieTime = QTime::currentTime().addMSecs(msec);
@@ -19,8 +18,9 @@ ecosystem::ecosystem(QWidget *parent)
 	connect(&dialogSetting, SIGNAL(sendSettingData(SettingData)), this, SLOT(receiveSettingData(SettingData)));//发射信号和接受槽函数连接
 	timer = new QTimer(this);
 	connect(timer, SIGNAL(timeout()), this, SLOT(timerEven()));
-}
 
+	Animal* asd = new Chick();
+}
 
 ecosystem::~ecosystem()
 {
@@ -159,6 +159,7 @@ void ecosystem::btnRunClick()
 		}
 		setWindowTitle(QString::number(sys->getSize(), 10)); //标题显示动物的数量
 		sys->run();
+		sys->recordTheData(); //记录各种动物的数量信息
 		repaint(); //重绘
 		delaymsec(2000 - ui.horizontalSlider->value());
 	}
@@ -175,6 +176,62 @@ void ecosystem::receiveSettingData(SettingData settingData)
 
 void ecosystem::timerEven()
 {
+}
+
+void ecosystem::labelDeadClick()
+{
+	if (sys)
+	{
+		Organism* op = sys->getSelectedOrganismP();
+		if (op)
+			sys->kill(op);
+	}
+}
+
+void ecosystem::labelTreaClick()
+{
+	if (sys)
+	{
+		Organism* op = sys->getSelectedOrganismP();
+		if (op)
+			sys->trea(op);
+	}
+}
+
+void ecosystem::labelSureClick()
+{
+	int x, y;
+	if (!sys || !running)return;
+	switch (ui.comboBox->currentIndex())
+	{
+	case 0: //地震效果
+		x = this->x();
+		y = this->y();
+		for (int i = 0; i < sys->mSettingData.earthquakeTime; i++)
+		{
+			move(x + SettingData::getRandNum(-25, 25), y + SettingData::getRandNum(-25, 25));
+			delaymsec(100);
+		}
+		sys->earthquake();
+		move(x, y);
+		break;
+
+	case 1: //闪电
+		sys->lightn();
+		break;
+	}
+}
+
+void ecosystem::btnDataClick()
+{
+	if (sys)
+	{
+		mDataDialog.count = sys->count;
+		mDataDialog.mNumData = sys->mNumData;
+		mDataDialog.init();
+		mDataDialog.show();
+	}
+	
 }
 
 

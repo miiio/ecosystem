@@ -19,8 +19,11 @@ public:
 	void mouseReleaseEvent(QMouseEvent *e); //重写鼠标点击事件
 	void closeEvent(QCloseEvent *event);
 
-	DialogSetting dialogSetting;
 	SettingData mSettingData; //配置数据
+
+	//2个窗口
+	DialogSetting dialogSetting;
+	DataDialog mDataDialog;
 public slots :
 	void btnRunClick();
 	void btnStopClick();
@@ -30,9 +33,13 @@ public slots :
 	void btnLoadClick();
 	void receiveSettingData(SettingData settingData);
 	void timerEven();
+	void labelDeadClick();
+	void labelTreaClick();
+	void labelSureClick();
+	void btnDataClick();
 private:
 	QTimer *timer;
-	System* sys = NULL;
+	System* sys = NULL; //生态系统组合类
 	bool running = false;
 	Ui::ecosystemClass ui;	
 };

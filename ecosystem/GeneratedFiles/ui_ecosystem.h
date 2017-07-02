@@ -13,12 +13,14 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
+#include "clickablelabel.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -39,6 +41,10 @@ public:
     QPushButton *pushButton_5;
     QPushButton *pushButton_6;
     QPushButton *pushButton_7;
+    QComboBox *comboBox;
+    ClickableLabel *label_5;
+    ClickableLabel *label_6;
+    ClickableLabel *label_7;
 
     void setupUi(QWidget *ecosystemClass)
     {
@@ -57,7 +63,7 @@ public:
         pushButton_2->setGeometry(QRect(950, 140, 120, 50));
         textEdit = new QTextEdit(ecosystemClass);
         textEdit->setObjectName(QStringLiteral("textEdit"));
-        textEdit->setGeometry(QRect(20, 640, 901, 38));
+        textEdit->setGeometry(QRect(20, 640, 791, 38));
         pushButton_3 = new QPushButton(ecosystemClass);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
         pushButton_3->setGeometry(QRect(950, 200, 120, 50));
@@ -84,7 +90,7 @@ public:
         label_4->setStyleSheet(QStringLiteral("border:2px solid;"));
         textEdit_2 = new QTextEdit(ecosystemClass);
         textEdit_2->setObjectName(QStringLiteral("textEdit_2"));
-        textEdit_2->setGeometry(QRect(950, 450, 131, 171));
+        textEdit_2->setGeometry(QRect(950, 450, 131, 141));
         pushButton_5 = new QPushButton(ecosystemClass);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
         pushButton_5->setGeometry(QRect(950, 260, 120, 50));
@@ -93,7 +99,22 @@ public:
         pushButton_6->setGeometry(QRect(950, 320, 120, 50));
         pushButton_7 = new QPushButton(ecosystemClass);
         pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
-        pushButton_7->setGeometry(QRect(950, 380, 121, 51));
+        pushButton_7->setGeometry(QRect(820, 640, 101, 41));
+        comboBox = new QComboBox(ecosystemClass);
+        comboBox->setObjectName(QStringLiteral("comboBox"));
+        comboBox->setGeometry(QRect(950, 390, 81, 31));
+        label_5 = new ClickableLabel(ecosystemClass);
+        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setGeometry(QRect(980, 600, 31, 21));
+        label_5->setCursor(QCursor(Qt::PointingHandCursor));
+        label_6 = new ClickableLabel(ecosystemClass);
+        label_6->setObjectName(QStringLiteral("label_6"));
+        label_6->setGeometry(QRect(1040, 400, 31, 21));
+        label_6->setCursor(QCursor(Qt::PointingHandCursor));
+        label_7 = new ClickableLabel(ecosystemClass);
+        label_7->setObjectName(QStringLiteral("label_7"));
+        label_7->setGeometry(QRect(1020, 600, 31, 21));
+        label_7->setCursor(QCursor(Qt::PointingHandCursor));
 
         retranslateUi(ecosystemClass);
         QObject::connect(pushButton, SIGNAL(clicked()), ecosystemClass, SLOT(btnRunClick()));
@@ -102,6 +123,10 @@ public:
         QObject::connect(pushButton_4, SIGNAL(clicked()), ecosystemClass, SLOT(btnPauseClick()));
         QObject::connect(pushButton_5, SIGNAL(clicked()), ecosystemClass, SLOT(btnSaveClick()));
         QObject::connect(pushButton_6, SIGNAL(clicked()), ecosystemClass, SLOT(btnLoadClick()));
+        QObject::connect(label_5, SIGNAL(clicked()), ecosystemClass, SLOT(labelDeadClick()));
+        QObject::connect(label_7, SIGNAL(clicked()), ecosystemClass, SLOT(labelTreaClick()));
+        QObject::connect(label_6, SIGNAL(clicked()), ecosystemClass, SLOT(labelSureClick()));
+        QObject::connect(pushButton_7, SIGNAL(clicked()), ecosystemClass, SLOT(btnDataClick()));
 
         QMetaObject::connectSlotsByName(ecosystemClass);
     } // setupUi
@@ -124,7 +149,15 @@ public:
         label_4->setText(QString());
         pushButton_5->setText(QApplication::translate("ecosystemClass", "\344\277\235\345\255\230", Q_NULLPTR));
         pushButton_6->setText(QApplication::translate("ecosystemClass", "\345\212\240\350\275\275", Q_NULLPTR));
-        pushButton_7->setText(QApplication::translate("ecosystemClass", "\345\234\260\351\234\207", Q_NULLPTR));
+        pushButton_7->setText(QApplication::translate("ecosystemClass", "\346\225\260\346\215\256", Q_NULLPTR));
+        comboBox->clear();
+        comboBox->insertItems(0, QStringList()
+         << QApplication::translate("ecosystemClass", "\345\234\260\351\234\207", Q_NULLPTR)
+         << QApplication::translate("ecosystemClass", "\351\227\252\347\224\265", Q_NULLPTR)
+        );
+        label_5->setText(QApplication::translate("ecosystemClass", "<html><head/><body><p><span style=\" font-size:11pt; text-decoration: underline; color:#ff0000;\">\346\255\273\344\272\241</span></p></body></html>", Q_NULLPTR));
+        label_6->setText(QApplication::translate("ecosystemClass", "<html><head/><body><p><span style=\" font-size:11pt; text-decoration: underline; color:#000000;\">\347\241\256\345\256\232</span></p></body></html>", Q_NULLPTR));
+        label_7->setText(QApplication::translate("ecosystemClass", "<html><head/><body><p><span style=\" font-size:11pt; text-decoration: underline; color:#ff0000;\">\346\262\273\347\226\227</span></p></body></html>", Q_NULLPTR));
     } // retranslateUi
 
 };

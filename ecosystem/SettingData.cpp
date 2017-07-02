@@ -2,6 +2,11 @@
 
 
 
+int SettingData::getRandNum(int a, int b)
+{
+	return (rand() % (a ? b : b + 1)) + a;
+}
+
 SettingData::SettingData()
 {
 	loadFromFile();

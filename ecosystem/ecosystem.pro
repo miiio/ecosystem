@@ -5,10 +5,14 @@
 TEMPLATE = app
 TARGET = ecosystem
 DESTDIR = ../x64/Debug
-QT       += multimedia  
-QT += core widgets gui
+QT       += core gui
+QT += charts
+
+
+
+
 CONFIG += debug
-DEFINES += WIN64 QT_DLL QT_WIDGETS_LIB
+DEFINES += WIN64 QT_WIDGETS_LIB
 INCLUDEPATH += ./GeneratedFiles \
     . \
     ./GeneratedFiles/Debug
@@ -18,3 +22,4 @@ OBJECTS_DIR += debug
 UI_DIR += ./GeneratedFiles
 RCC_DIR += ./GeneratedFiles
 include(ecosystem.pri)
+win32:RC_FILE = ecosystem.rc

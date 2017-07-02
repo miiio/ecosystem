@@ -8,18 +8,42 @@ message("You are running qmake on a generated .pro file. This may not work!")
 
 
 HEADERS += ./Animal.h \
+    ./Grass.h \
     ./Organism.h \
+    ./resource.h \
     ./SettingData.h \
     ./System.h \
     ./ecosystem.h \
-    ./DialogSetting.h
+    ./ClickableLabel.h \
+    ./DataDialog.h \
+    ./DialogSetting.h \
+    ./Elephant.h \
+    ./Tiger.h \
+    ./Wolf.h \
+    ./Cattle.h \
+    ./Chick.h \
+    ./Deer.h \
+    ./Lion.h \
+    ./Pig.h
 SOURCES += ./Animal.cpp \
+    ./ClickableLabel.cpp \
+    ./DataDialog.cpp \
     ./DialogSetting.cpp \
     ./ecosystem.cpp \
+    ./Grass.cpp \
     ./main.cpp \
     ./Organism.cpp \
     ./SettingData.cpp \
-    ./System.cpp
+    ./System.cpp \
+    ./Cattle.cpp \
+    ./Chick.cpp \
+    ./Deer.cpp \
+    ./Elephant.cpp \
+    ./Lion.cpp \
+    ./Pig.cpp \
+    ./Tiger.cpp \
+    ./Wolf.cpp
 FORMS += ./ecosystem.ui \
-    ./DialogSetting.ui
+    ./DialogSetting.ui \
+    ./DialogData.ui
 RESOURCES += ecosystem.qrc

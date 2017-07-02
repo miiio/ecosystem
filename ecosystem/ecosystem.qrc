@@ -11,5 +11,6 @@
         <file>Resources/wolf.png</file>
         <file>Resources/bone.png</file>
         <file>Resources/grass.png</file>
+        <file>Resources/light.png</file>
     </qresource>
 </RCC>

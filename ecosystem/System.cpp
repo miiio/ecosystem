@@ -5,21 +5,7 @@ int System::getRandNum(int a, int b)
 	return (rand() % (a ? b : b + 1)) + a;
 }
 
-//检查点是否可用来生成生物
-bool System::checkXYForCreat(int x, int y, int attackrange, int size)
-{
-	if (x < 0 || x >= mSettingData.mMapWidth - size || y < 0 || y >= mSettingData.mMapHeight - size)return false;
-	for (IT_A it = mAnimals->begin(); it != mAnimals->end(); it++)
-	{
-		if (!*it)continue;
-		int range = __max(attackrange, IT->getAttackRange()); //考虑上攻击范围保证生成的位置是安全的
-		if (abs(IT->mX - x) <= (IT->mX > x ? size : IT->mSize) + range
-			&& abs(IT->mY - y) <= (IT->mY > y ? size : IT->mSize) + range)
-			return false;
-	}
-	return true;
-}
-System::System()
+void System::initRes()
 {
 	//初始化Pixmap
 	mPixmaps[0] = QPixmap(":/ecosystem/Resources/background.jpg");
@@ -33,11 +19,45 @@ System::System()
 	mPixmaps[8] = QPixmap(":/ecosystem/Resources/wolf.png");
 	mPixmaps[9] = QPixmap(":/ecosystem/Resources/bone.png");
 	mPixmaps[10] = QPixmap(":/ecosystem/Resources/grass.png");
+	mPixmaps[11] = QPixmap(":/ecosystem/Resources/light.png");
 
 	mAnimals = new QVector<Animal*>();
 	mGrass = new QVector<Grass*>();
+	mNumData = new QMap<int, DataDialog::NumNode >();
 
 	count = 0; //计时器
+}
+
+//检查点是否可用来生成生物
+bool System::checkXYForCreat(int x, int y, int attackrange, int size)
+{	
+	if (x < 0 || x >= mSettingData.mMapWidth - size || y < 0 || y >= mSettingData.mMapHeight - size)return false;
+	for (IT_A it = mAnimals->begin(); it != mAnimals->end(); it++)
+	{
+		if (!*it)continue;
+		int range = __max(attackrange, IT->getAttackRange()); //考虑上攻击范围保证生成的位置是安全的
+		if (abs(IT->getX() - x) <= (IT->getX() > x ? size : IT->getSize()) + range
+			&& abs(IT->getY() - y) <= (IT->getY() > y ? size : IT->getSize()) + range)
+
+		//if(IT->getRect().intersects(rect)) //碰撞了
+			return false;
+	}
+	return true;
+}
+
+QString System::getRandName()
+{
+	QString tmp = QString("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+	QString ret;
+	ret[0] = tmp.at(getRandNum(0,61));
+	ret[1] = tmp.at(getRandNum(0, 61));
+	ret[2] = tmp.at(getRandNum(0, 61));
+	return ret;
+}
+
+System::System()
+{
+	initRes();
 }
 
 System::~System()
@@ -53,19 +73,16 @@ System::~System()
 	delete mGrass;
 }
 
-void System::moveXY(Animal* ap, int x, int y, int attackrange)
+void System::Collision(Animal* ap, int x, int y, int attackrange)
 {
-
 	//--------处理草的碰撞
-	if (ap->mTypeId != PIXLION &&ap->mTypeId != PIXTIGER &&ap->mTypeId != PIXWOLF
-		&& ap->mHp_cur<(ap->mHp_total / 100 * SettingData::mGrassHpLimit)) //非食肉动物且血量低于x%
+	if (!ap->isPredator() && ap->getHp_percentage() <SettingData::mGrassHpLimit) //非食肉动物且血量低于x%
 	{
 		for (auto it = mGrass->begin(); it != mGrass->end(); it++) //遍历 草
 			if (ap->getRect().intersects(IT->getRect())) //碰撞
 			{
-				ap->mHp_cur += (ap->mHp_total / 100 * SettingData::mGrassAdd); //回复40%血量
-				if (ap->mHp_cur > ap->mHp_total)ap->mHp_cur = ap->mHp_total; //血量溢出
-				IT->mHp_cur--; //草的血量-1
+				ap->addHp_percentage(SettingData::mGrassAdd); //回复x%血量
+				IT->addHp(-1);	//草的血量-1
 			}
 	}
 	//--------处理动物间的碰撞
@@ -75,47 +92,51 @@ void System::moveXY(Animal* ap, int x, int y, int attackrange)
 	for (IT_A it = mAnimals->begin(); it != mAnimals->end(); it++) //遍历所有动物
 	{
 		if (*it == ap)continue;
-		int range = __max(attackrange, IT->getAttackRange()); //取两者之间攻击范围大的
-		if (ap->mRank == IT->mRank)range = 0; //若同等等级则无需考虑攻击范围
 
+		int range = __max(attackrange, IT->getAttackRange()); //取两者之间攻击范围大的
+		if (ap->getRank() == IT->getRank())range = 0; //若同等等级则无需考虑攻击范围
 		//通过坐标判断碰撞
-		if (abs(IT->mX - x) <= (IT->mX > x ? ap->mSize : IT->mSize) + range
-			&& abs(IT->mY - y) <= (IT->mY > y ? ap->mSize : IT->mSize) + range)
+		if (abs(IT->getX() - x) <= (IT->getX() > x ? ap->getSize() : IT->getSize()) + range
+			&& abs(IT->getY() - y) <= (IT->getY() > y ? ap->getSize() : IT->getSize()) + range)
 		{
+		//QRect rect = QRect(x - attackrange, y - attackrange, ap->getSize() + 2 * attackrange, ap->getSize() + 2 * attackrange); //传进来的范围
+		//if(IT->getRect().intersects(rect))
+		//{
 			// ---------------扑食事件---------------
 			QString text;
-			int result = ap->eat(IT,text); //扑食规则 返回：0-没有发生扑食， 1-吃掉了，2-自己被吃掉了
+			int result = ap->eat(IT, text); //扑食规则 返回：0-没有发生扑食， 1-吃掉了，2-自己被吃掉了
 			print(text);
 			if (result == 1)//ap 吃掉 it
 			{
-				deadAnimals.push_back(*it);
+				//deadAnimals.push_back(*it);
 				flag = true;
 			}
 			else if (result == 2) //it 吃掉 ap
 			{
-				deadAnimals.push_back(ap);
+				//deadAnimals.push_back(ap);
 				flag = true;
 				break;
 			}
 			else
 			{ 
 				//---------------繁殖事件---------------
-				if (ap->mSex != IT->mSex && //性别
-					ap->mHp_cur * 100 >= ap->mHp_total*mSettingData.mReproduceHp  //血量限制
-					&& IT->mHp_cur * 100 >= IT->mHp_total*mSettingData.mReproduceHp //血量限制
-					&&ap->mAge >= mSettingData.mReproduceAge //年龄限制
-					&&  getRandNum(1, 100) <= mSettingData.mReproduceProportion //概率
-					)
+			QString text;
+			int n = ap->reproduce(IT, &mSettingData, text);
+				if (n>0)
 				{
-					born.push_back({ ap->mTypeId, getRandNum(4, 8),ap->mX,ap->mY }); //加入born
-					IT->mHp_cur = IT->mHp_total / 2;
-					ap->mHp_cur = ap->mHp_total / 2;
-					print("\"" + IT->mName + "\"  reproduce with \"" + ap->mName + "\" !");
+					born.push_back({ ap->getTypeId(),n,ap->getX(),ap->getY() }); //加入born
+					print(text);
 				}
 				flag2 = true;
 			}
 			//ap 和 it相撞
 		}
+	}
+	ap->setAge((count - ap->getCreatTime()) / mSettingData.mAge);
+	if (ap->getHp() <= 0 || ap->getAge() >= mSettingData.mDeadAGe)
+	{
+		print("\"" + ap->getName() + "\" dead!");
+		deadAnimals.push_back(ap);
 	}
 
 	if (flag2&&!flag) //无需移动
@@ -125,24 +146,8 @@ void System::moveXY(Animal* ap, int x, int y, int attackrange)
 	else
 	{
 		ap->move(x, y);
-		if ((ap->mTypeId == 5 || ap->mTypeId == 7 || ap->mTypeId == 8))
-			ap->mHp_cur--; //捕食者每次减少血量
-		else
-		{
-			ap->mHp_cur--;
-			if (ap->mHp_cur >= ap->mHp_total)
-				ap->mHp_cur = ap->mHp_total;
-		}
-
-		ap->mAge = (count - ap->mCreatTime) / mSettingData.mAge;
-		if (ap->mHp_cur <= 0 || ap->mAge >= mSettingData.mDeadAGe)//5,7,8为捕食者
-		{
-			print("\"" + ap->mName + "\" dead!");
-			deadAnimals.push_back(ap);
-		}
 	}
 }
-
 
 bool System::run()
 {
@@ -151,10 +156,10 @@ bool System::run()
 	born.clear();
 	for (IT_A it = mAnimals->begin(); it != mAnimals->end(); it++)
 	{
-		int X = IT->mX;
-		int Y = IT->mY;
-		int& Pre = IT->mPre;
-		int x, y, speed = IT->mSpeed;
+		int X = IT->getX();
+		int Y = IT->getY();
+		int Pre = IT->getPreDirection();
+		int x, y, speed = IT->getSpeed();
 		int tmpdir;
 		do
 		{
@@ -163,16 +168,17 @@ bool System::run()
 			else
 				tmpdir = getRandNum(0, 8);
 			x = X + speed*Direction[tmpdir][0], y = Y + speed*Direction[tmpdir][1];
-		} while (x < 0 || x >= mSettingData.mMapWidth - IT->mSize || y < 0 || y >= mSettingData.mMapHeight - IT->mSize);
-		moveXY(*it, x, y, IT->mAttackRange);
-		Pre = tmpdir;
+		} while (x < 0 || x >= mSettingData.mMapWidth - IT->getSize() || y < 0 || y >= mSettingData.mMapHeight - IT->getSize());
+		Collision(*it, x, y, IT->getAttackRange());
+		IT->setPreDirection(tmpdir);
 	}
+
 	//处理死掉的草
 	for (auto it = mGrass->begin(); it != mGrass->end();)
 	{
-		if (IT->mHp_cur <= 0)
+		if (IT->getHp() <= 0)
 		{
-			if (selectedPointer == *it) //被选中的动物死掉啦
+			if (selectedPointer == *it) 
 			{
 				selectedPointer = NULL;
 				textEdit_animalInfo->setText("dead...");
@@ -185,14 +191,41 @@ bool System::run()
 			++it;
 	}
 
+	//处理闪电事件
+	for (auto it = mLights.begin(); it != mLights.end(); )
+	{
+		if (count - it->startTime >= mSettingData.LightTime)
+			it = mLights.erase(it); //删除
+		else
+		{
+			if (it->startTime == count)
+			{
+				for (auto ait = mAnimals->begin(); ait != mAnimals->end(); ait++)
+				{
+					if (it->rect.intersects((*ait)->getRect())) //通过QRect检测碰撞
+					{
+						(*ait)->addHp_percentage(-1*mSettingData.LightHurt); //减少百分比血量
+						//(*ait)->mHp_cur -= (*ait)->mHp_total*mSettingData.LightHurt / 100;
+						if ((*ait)->getHp() <= 0)
+						{
+							deadAnimals.push_back(*ait);
+							print((*ait)->getName() + " dead ...");
+						}
+					}
+				}
+			}
+			it++;
+		}
+	}
+
 	//处理需要死亡的动物
 	for (IT_A it = mAnimals->begin(); it != mAnimals->end();)
 	{
 		bool need = false;
-		for (IT_A it2 = deadAnimals.begin(); it2 != deadAnimals.end(); it2++)
+		for (auto it2 = deadAnimals.begin(); it2 != deadAnimals.end(); it2++)
 			if (*it == *it2)
 			{
-				bones.push_back({ IT->mX, IT->mY, count + mSettingData.mBoneTime ,IT->mSize });
+				bones.push_back({ IT->getX(), IT->getY(), count + mSettingData.mBoneTime ,IT->getSize() });
 				need = true;
 				break;
 			}
@@ -211,7 +244,7 @@ bool System::run()
 			it++;
 	}
 	//处理需要繁殖的动物
-	for (QVector<Born>::iterator it = born.begin(); it != born.end(); it++)
+	for (auto it = born.begin(); it != born.end(); it++)
 	{
 		for (int i = 0; i < it->n; i++)
 		{
@@ -227,6 +260,7 @@ bool System::run()
 			creatGrass();
 	}
 
+
 	return getSize() > 0;
 }
 
@@ -240,35 +274,55 @@ void System::setAnimalInfoTextEdit(QTextEdit * te)
 	textEdit_animalInfo = te;
 }
 
-void System::creatAnimal_xy(int animalType, int x, int y)
+Animal * System::creatAnimalPointer(int animalType)
 {
+	Animal* pa;
 	switch (animalType)
 	{
-	case PIXCATTLE: 
-		mAnimals->push_back(_CREAT(Cattle)); 
+	case PIXCATTLE:
+		pa = new Cattle();
 		break;
 	case PIXCHICK:
-		mAnimals->push_back(_CREAT(Chick));
+		pa = new Chick();
 		break;
 	case PIXDEER:
-		mAnimals->push_back(_CREAT(Deer));
+		pa = new Deer();
 		break;
 	case PIXELEPHANT:
-		mAnimals->push_back(_CREAT(Elephant));
+		pa = new Elephant();
 		break;
 	case PIXLION:
-		mAnimals->push_back(_CREAT(Lion));
+		pa = new Lion();
 		break;
 	case PIXPIG:
-		mAnimals->push_back(_CREAT(Pig));
+		pa = new Pig();
 		break;
 	case PIXTIGER:
-		mAnimals->push_back(_CREAT(Tiger));
+		pa = new Tiger();
 		break;
 	case PIXWOLF:
-		mAnimals->push_back(_CREAT(Wolf));
+		pa = new Wolf();
 		break;
 	}
+	return pa;
+}
+
+void System::creatAnimalInXY(int animalType, int x, int y)
+{
+	Animal* pa = creatAnimalPointer(animalType);
+	pa->setX(x); pa->setY(y); //位置
+	pa->setTotalHp(mSettingData.mAnimalSetting[animalType].mHp);//最大血量
+	pa->setHp(pa->getTotalHp()); //满血
+	pa->setAge(0); //年龄
+	pa->setRank(PIXRANK[animalType]); //食物链等级
+	pa->setName(PIXNAMES[animalType] + QString::number(count)+"_"+getRandName()); //名字
+	pa->setSex(getRandNum(1, 2) == 1 ? "male" : "female"); //性别
+	pa->setSpeed(mSettingData.mAnimalSetting[animalType].mSpeed); //移动速度
+	pa->setAttackRange(mSettingData.mAnimalSetting[animalType].mAttackRange);//攻击范围
+	pa->setTypeId(animalType);	 //种类
+	pa->setCreatTime(count);	//生成的时间，用于计算年龄
+	pa->setSize(mSettingData.mAnimalSetting[animalType].mSize);	//显示的大小
+	mAnimals->push_back(pa);
 	//mAnimals->push_back(new Animal(
 	//	x, y, //位置
 	//	mSettingData.mAnimalSetting[animalType].mHp //最大血量
@@ -296,7 +350,7 @@ void System::creatAnimal(int animalType)
 		y = getRandNum(0, mSettingData.mMapHeight);
 	} while (!checkXYForCreat(x, y, 10, mSettingData.mAnimalSetting[animalType].mSize));
 
-	creatAnimal_xy(animalType,x,y);
+	creatAnimalInXY(animalType,x,y);
 }
 
 //计算两点之间的距离
@@ -313,8 +367,8 @@ void System::creatAnimal(int animalType, int x, int y)
 	int cnt = 0;
 	do
 	{
-		rx = getRandNum(0, mSettingData.mMapWidth-40);
-		ry = getRandNum(0, mSettingData.mMapHeight-40);
+		rx = getRandNum(0, mSettingData.mMapWidth-mSettingData.mAnimalSetting[animalType].mSize);
+		ry = getRandNum(0, mSettingData.mMapHeight- mSettingData.mAnimalSetting[animalType].mSize);
 		if (getDist(rx, ry, x, y) > mSettingData.mBornRange)
 		{
 			if (cnt > 100)return; //尝试100次之后没找到位置
@@ -323,7 +377,7 @@ void System::creatAnimal(int animalType, int x, int y)
 		}
 	} while (!checkXYForCreat(rx, ry, 10, mSettingData.mAnimalSetting[animalType].mSize));
 
-	creatAnimal_xy(animalType, rx, ry);
+	creatAnimalInXY(animalType, rx, ry);
 }
 
 //动物种类,生成数量 其他属性随机生成
@@ -351,7 +405,10 @@ void System::creatGrass()
 			}
 		if (flag)	break;
 	}
-	mGrass->push_back(new Grass(x,y));
+	Grass* tmp = new Grass();
+	tmp->setX(x);
+	tmp->setY(y);
+	mGrass->push_back(tmp);
 }
 
 void System::setSettingData(SettingData setting)
@@ -382,27 +439,36 @@ void System::show(QPainter* painter)
 	//绘制草
 	for (auto it = mGrass->begin(); it != mGrass->end(); it++)
 	{
-		painter->drawPixmap(QRect(IT->mX + mSettingData.mapPadding, IT->mY + mSettingData.mapPadding,
-			IT->mSize, IT->mSize), mPixmaps[IT->mTypeId]);
+		painter->drawPixmap(QRect(IT->getX() + mSettingData.mapPadding, IT->getY() + mSettingData.mapPadding,
+			IT->getSize(), IT->getSize()), mPixmaps[IT->getTypeId()]);
 
 		if (*it == selectedPointer) //为当前选中的动物绘框
 		{
 			painter->setPen(QColor("red"));
-			painter->drawRect(mSettingData.mapPadding + IT->mX - 3, mSettingData.mapPadding + IT->mY - 3, IT->mSize + 5, 5 + IT->mSize);
+			painter->drawRect(mSettingData.mapPadding + IT->getX() - 3, mSettingData.mapPadding + IT->getY() - 3, 
+				IT->getSize() + 5, 5 + IT->getSize());
 		}
 	}
 
 	//绘制动物
 	for (IT_A it = mAnimals->begin(); it != mAnimals->end(); it++)
 	{
-		painter->drawPixmap(QRect(IT->mX + mSettingData.mapPadding, IT->mY + mSettingData.mapPadding,
-			IT->mSize, IT->mSize), mPixmaps[IT->mTypeId]);
+		painter->drawPixmap(QRect(IT->getX() + mSettingData.mapPadding, IT->getY() + mSettingData.mapPadding,
+			IT->getSize(), IT->getSize()), mPixmaps[IT->getTypeId()]);
 
 		if (*it == selectedPointer) //为当前选中的动物绘框
 		{
 			painter->setPen(QColor("red"));
-			painter->drawRect(mSettingData.mapPadding + IT->mX - 3, mSettingData.mapPadding + IT->mY - 3, IT->mSize + 5, 5 + IT->mSize);
+			painter->drawRect(mSettingData.mapPadding + IT->getX() - 3, mSettingData.mapPadding + IT->getY() - 3, 
+				IT->getSize() + 5, 5 + IT->getSize());
 		}
+	}
+
+	//绘制闪电
+	for (auto it = mLights.begin(); it != mLights.end(); it++)
+	{
+		if (it->startTime <= count)
+			painter->drawPixmap(it->rect, mPixmaps[PIXLIGHT]);
 	}
 
 	if (selectedPointer) //如果当前有被选择的动物，且动物没死
@@ -428,8 +494,8 @@ void System::select(int x, int y)
 {
 	for (IT_A it = mAnimals->begin(); it != mAnimals->end(); it++)
 	{
-		if (x >= IT->mX && (x - IT->mX) <= IT->mSize &&
-			y >= IT->mY && (y - IT->mY) <= IT->mSize)
+		if (x >= IT->getX() && (x - IT->getX()) <= IT->getSize() &&
+			y >= IT->getY() && (y - IT->getY()) <= IT->getSize())
 		{
 			selectedPointer = *it;
 			return;
@@ -438,8 +504,8 @@ void System::select(int x, int y)
 	//草
 	for (auto it = mGrass->begin(); it != mGrass->end(); it++)
 	{
-		if (x >= IT->mX && (x - IT->mX) <= IT->mSize &&
-			y >= IT->mY && (y - IT->mY) <= IT->mSize)
+		if (x >= IT->getX() && (x - IT->getX()) <= IT->getSize() &&
+			y >= IT->getY() && (y - IT->getY()) <= IT->getSize())
 		{
 			selectedPointer = *it;
 			return;
@@ -452,15 +518,15 @@ QString System::getOrganismInfo(int x, int y)
 {
 	for (IT_A it = mAnimals->begin(); it != mAnimals->end(); it++)
 	{
-		if (x >= IT->mX && (x - IT->mX) <= IT->mSize &&
-			y >= IT->mY && (y - IT->mY) <= IT->mSize)
+		if (x >= IT->getX() && (x - IT->getX()) <= IT->getSize() &&
+			y >= IT->getY() && (y - IT->getY()) <= IT->getSize())
 			return IT->Info();
 	}
 
 	for (auto it = mGrass->begin(); it != mGrass->end(); it++)
 	{
-		if (x >= IT->mX && (x - IT->mX) <= IT->mSize &&
-			y >= IT->mY && (y - IT->mY) <= IT->mSize)
+		if (x >= IT->getX() && (x - IT->getX()) <= IT->getSize() &&
+			y >= IT->getY() && (y - IT->getY()) <= IT->getSize())
 			return IT->Info();
 	}
 	return NULL;
@@ -528,7 +594,7 @@ void System::loadStatus(QString path)
 		if (*it)	delete *it;
 	mAnimals->clear();
 	mGrass->clear();
-	for (IT_A it = deadAnimals.begin(); it != deadAnimals.end(); it++)
+	for (auto it = deadAnimals.begin(); it != deadAnimals.end(); it++)
 		if (*it)	delete *it;
 	deadAnimals.clear();
 	bones.clear();
@@ -550,7 +616,7 @@ void System::loadStatus(QString path)
 	for (int i = 0; i < Animals_num; i++)
 	{
 		QString key = "Animal_" + QString::number(i, 10) + "_";
-		Animal* animal = new Animal();
+		Animal* animal = creatAnimalPointer(setting.value(key+"mTypeId").toInt());
 		animal->loadInfo(&setting, key,&mSettingData); 
 		mAnimals->push_back(animal);
 	}	
@@ -560,7 +626,7 @@ void System::loadStatus(QString path)
 	for (int i = 0; i < Grass_num; i++)
 	{
 		QString key = "Grass_" + QString::number(i, 10) + "_";
-		Grass* grass = new Grass(0,0);
+		Grass* grass = new Grass();
 		grass->loadInfo(&setting, key, &mSettingData);
 		mGrass->push_back(grass);
 	}
@@ -571,11 +637,72 @@ void System::loadStatus(QString path)
 	if (selectId != -1)  selectedPointer = mAnimals->at(selectId);
 	else  selectedPointer = NULL;
 
+	//-------------------------导入死亡标记的信息-------------------------
 	for (int i = 0; i < setting.value("bones_num").toInt(); i++)
 	{
 		QString str = "bones_" + QString::number(i, 10) + "_";
 		bones.push_back({ setting.value(str + "x").toInt(), setting.value(str + "y").toInt(),
 			setting.value(str + "endtime").toInt(), setting.value(str + "size").toInt() });
 	}
+	//-------------------------导入死亡标记的信息-------------------------
+
 	setting.endGroup();
+}
+
+void System::recordTheData()
+{
+	DataDialog::NumNode tmp;
+	for (int i = 1; i <= 8; i++)tmp.num[i] = 0;
+	for (auto it = mAnimals->begin(); it != mAnimals->end(); it++)
+	{
+		tmp.num[IT->getTypeId()]++;
+	}
+	mNumData->insert(count,tmp);
+}
+
+void System::earthquake()
+{
+	for (auto it = mAnimals->begin(); it != mAnimals->end(); it++)
+	{
+		IT->addHp_percentage(-mSettingData.earthquakeHurt);
+		//IT->Hp_cur-= (IT->getTotalHp()*mSettingData.earthquakeHurt / 100);
+	}
+}
+
+void System::lightn()
+{
+	QRect rect;
+	bool flag;
+	int num = getRandNum(5,10);
+	mLights.clear();
+	for (int i = 0; i < num; i++)
+	{
+		int x, y;
+		do
+		{
+			x = getRandNum(0, mSettingData.mMapWidth - mSettingData.LightWidth);
+			y = getRandNum(0, mSettingData.mMapHeight - mSettingData.LightHeight);
+			rect = QRect(x,y, mSettingData.LightWidth, mSettingData.LightHeight);
+			flag = false;
+			for (int j = 0; j < mLights.size(); j++)
+				if (rect.intersects(mLights[j].rect))
+				{
+					flag = true; //坐标冲突
+					break;
+				}
+		} while (flag);
+		mLights.push_back({rect,getRandNum(1,5)+count});
+	}
+}
+
+bool System::kill(Organism * op)
+{
+	if (!op)return false;
+	return op->setHp(0);
+}
+
+bool System::trea(Organism * op)
+{
+	if (!op)return false;
+	return op->setHp(op->getTotalHp());
 }

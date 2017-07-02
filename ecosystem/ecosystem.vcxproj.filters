@@ -52,9 +52,6 @@
     <ClCompile Include="ecosystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\qrc_ecosystem.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="System.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -64,20 +61,8 @@
     <ClCompile Include="Animal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_ecosystem.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_ecosystem.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="DialogSetting.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_DialogSetting.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_DialogSetting.cpp">
-      <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="SettingData.cpp">
       <Filter>Source Files</Filter>
@@ -109,6 +94,39 @@
     <ClCompile Include="Elephant.cpp">
       <Filter>Source Files\Animals</Filter>
     </ClCompile>
+    <ClCompile Include="ClickableLabel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DataDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_DialogSetting.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_DialogSetting.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_DataDialog.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_DataDialog.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ClickableLabel.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ClickableLabel.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ecosystem.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ecosystem.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_ecosystem.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ecosystem.h">
@@ -126,56 +144,102 @@
     <CustomBuild Include="DialogSetting.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="GeneratedFiles\ui_ecosystem.h">
+    <CustomBuild Include="ClickableLabel.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DataDialog.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DialogData.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Animal.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Grass.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Organism.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="resource.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="SettingData.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="System.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Elephant.h">
+      <Filter>Header Files\Animals</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Tiger.h">
+      <Filter>Header Files\Animals</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Wolf.h">
+      <Filter>Header Files\Animals</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Cattle.h">
+      <Filter>Header Files\Animals</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Chick.h">
+      <Filter>Header Files\Animals</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Deer.h">
+      <Filter>Header Files\Animals</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Lion.h">
+      <Filter>Header Files\Animals</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Pig.h">
+      <Filter>Header Files\Animals</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Resources\background.jpg">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Resources\bone.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Resources\cattle.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Resources\chick.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Resources\deer.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Resources\elephant.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Resources\grass.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Resources\light.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Resources\lion.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Resources\pig.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Resources\tiger.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Resources\wolf.png">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GeneratedFiles\ui_DialogData.h">
       <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="System.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Organism.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Animal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_DialogSetting.h">
+    </CustomBuild>
+    <CustomBuild Include="GeneratedFiles\ui_DialogSetting.h">
       <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SettingData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Grass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Cattle.h">
-      <Filter>Header Files\Animals</Filter>
-    </ClInclude>
-    <ClInclude Include="Chick.h">
-      <Filter>Header Files\Animals</Filter>
-    </ClInclude>
-    <ClInclude Include="Deer.h">
-      <Filter>Header Files\Animals</Filter>
-    </ClInclude>
-    <ClInclude Include="Lion.h">
-      <Filter>Header Files\Animals</Filter>
-    </ClInclude>
-    <ClInclude Include="Pig.h">
-      <Filter>Header Files\Animals</Filter>
-    </ClInclude>
-    <ClInclude Include="Tiger.h">
-      <Filter>Header Files\Animals</Filter>
-    </ClInclude>
-    <ClInclude Include="Wolf.h">
-      <Filter>Header Files\Animals</Filter>
-    </ClInclude>
-    <ClInclude Include="Elephant.h">
-      <Filter>Header Files\Animals</Filter>
-    </ClInclude>
+    </CustomBuild>
+    <CustomBuild Include="GeneratedFiles\ui_ecosystem.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ecosystem.rc" />

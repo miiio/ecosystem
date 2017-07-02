@@ -60,7 +60,7 @@
     <rect>
      <x>20</x>
      <y>640</y>
-     <width>901</width>
+     <width>791</width>
      <height>38</height>
     </rect>
    </property>
@@ -171,7 +171,7 @@ p, li { white-space: pre-wrap; }
      <x>950</x>
      <y>450</y>
      <width>131</width>
-     <height>171</height>
+     <height>141</height>
     </rect>
    </property>
   </widget>
@@ -204,18 +204,96 @@ p, li { white-space: pre-wrap; }
   <widget class="QPushButton" name="pushButton_7">
    <property name="geometry">
     <rect>
-     <x>950</x>
-     <y>380</y>
-     <width>121</width>
-     <height>51</height>
+     <x>820</x>
+     <y>640</y>
+     <width>101</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="text">
-    <string>地震</string>
+    <string>数据</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>950</x>
+     <y>390</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>地震</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>闪电</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="ClickableLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>980</x>
+     <y>600</y>
+     <width>31</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#ff0000;&quot;&gt;死亡&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="ClickableLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>1040</x>
+     <y>400</y>
+     <width>31</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#000000;&quot;&gt;确定&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="ClickableLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>1020</x>
+     <y>600</y>
+     <width>31</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#ff0000;&quot;&gt;治疗&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>ClickableLabel</class>
+   <extends>QLabel</extends>
+   <header>clickablelabel.h</header>
+   <slots>
+    <signal>clicked()</signal>
+   </slots>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="ecosystem.qrc"/>
  </resources>
@@ -316,6 +394,70 @@ p, li { white-space: pre-wrap; }
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>label_5</sender>
+   <signal>clicked()</signal>
+   <receiver>ecosystemClass</receiver>
+   <slot>labelDeadClick()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>982</x>
+     <y>610</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1068</x>
+     <y>611</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>label_7</sender>
+   <signal>clicked()</signal>
+   <receiver>ecosystemClass</receiver>
+   <slot>labelTreaClick()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1039</x>
+     <y>610</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1005</x>
+     <y>630</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>label_6</sender>
+   <signal>clicked()</signal>
+   <receiver>ecosystemClass</receiver>
+   <slot>labelSureClick()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1059</x>
+     <y>414</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1092</x>
+     <y>414</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_7</sender>
+   <signal>clicked()</signal>
+   <receiver>ecosystemClass</receiver>
+   <slot>btnDataClick()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>872</x>
+     <y>662</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>865</x>
+     <y>691</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>btnRunClick()</slot>
@@ -324,5 +466,9 @@ p, li { white-space: pre-wrap; }
   <slot>btnPauseClick()</slot>
   <slot>btnSaveClick()</slot>
   <slot>btnLoadClick()</slot>
+  <slot>labelDeadClick()</slot>
+  <slot>labelTreaClick()</slot>
+  <slot>labelSureClick()</slot>
+  <slot>btnDataClick()</slot>
  </slots>
 </ui>

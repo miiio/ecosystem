@@ -186,7 +186,7 @@ public:
         spinBox_number_1->setGeometry(QRect(630, 70, 61, 22));
         spinBox_number_1->setMinimum(0);
         spinBox_number_1->setMaximum(100);
-        spinBox_number_1->setValue(10);
+        spinBox_number_1->setValue(15);
         label_7 = new QLabel(groupBox);
         label_7->setObjectName(QStringLiteral("label_7"));
         label_7->setGeometry(QRect(635, 20, 91, 31));
@@ -203,7 +203,7 @@ public:
         spinBox_hp_2->setObjectName(QStringLiteral("spinBox_hp_2"));
         spinBox_hp_2->setGeometry(QRect(140, 120, 61, 22));
         spinBox_hp_2->setMaximum(1000);
-        spinBox_hp_2->setValue(1000);
+        spinBox_hp_2->setValue(400);
         spinBox_size_2 = new QSpinBox(groupBox);
         spinBox_size_2->setObjectName(QStringLiteral("spinBox_size_2"));
         spinBox_size_2->setGeometry(QRect(510, 120, 61, 22));
@@ -225,7 +225,7 @@ public:
         spinBox_speed_2->setGeometry(QRect(260, 120, 61, 22));
         spinBox_speed_2->setMinimum(1);
         spinBox_speed_2->setMaximum(100);
-        spinBox_speed_2->setValue(20);
+        spinBox_speed_2->setValue(15);
         label_type_2 = new QLabel(groupBox);
         label_type_2->setObjectName(QStringLiteral("label_type_2"));
         label_type_2->setGeometry(QRect(30, 110, 40, 40));
@@ -236,7 +236,7 @@ public:
         spinBox_number_2->setGeometry(QRect(630, 120, 61, 22));
         spinBox_number_2->setMinimum(0);
         spinBox_number_2->setMaximum(100);
-        spinBox_number_2->setValue(10);
+        spinBox_number_2->setValue(15);
         label_11 = new QLabel(groupBox);
         label_11->setObjectName(QStringLiteral("label_11"));
         label_11->setGeometry(QRect(740, 167, 72, 21));
@@ -246,12 +246,12 @@ public:
         spinBox_number_3->setGeometry(QRect(630, 170, 61, 22));
         spinBox_number_3->setMinimum(0);
         spinBox_number_3->setMaximum(100);
-        spinBox_number_3->setValue(10);
+        spinBox_number_3->setValue(15);
         spinBox_hp_3 = new QSpinBox(groupBox);
         spinBox_hp_3->setObjectName(QStringLiteral("spinBox_hp_3"));
         spinBox_hp_3->setGeometry(QRect(140, 170, 61, 22));
         spinBox_hp_3->setMaximum(1000);
-        spinBox_hp_3->setValue(1000);
+        spinBox_hp_3->setValue(500);
         spinBox_size_3 = new QSpinBox(groupBox);
         spinBox_size_3->setObjectName(QStringLiteral("spinBox_size_3"));
         spinBox_size_3->setGeometry(QRect(510, 170, 61, 22));
@@ -274,7 +274,7 @@ public:
         spinBox_speed_3->setGeometry(QRect(260, 170, 61, 22));
         spinBox_speed_3->setMinimum(1);
         spinBox_speed_3->setMaximum(100);
-        spinBox_speed_3->setValue(20);
+        spinBox_speed_3->setValue(25);
         label_12 = new QLabel(groupBox);
         label_12->setObjectName(QStringLiteral("label_12"));
         label_12->setGeometry(QRect(740, 217, 72, 21));
@@ -284,7 +284,7 @@ public:
         spinBox_number_4->setGeometry(QRect(630, 220, 61, 22));
         spinBox_number_4->setMinimum(0);
         spinBox_number_4->setMaximum(100);
-        spinBox_number_4->setValue(10);
+        spinBox_number_4->setValue(12);
         spinBox_hp_4 = new QSpinBox(groupBox);
         spinBox_hp_4->setObjectName(QStringLiteral("spinBox_hp_4"));
         spinBox_hp_4->setGeometry(QRect(140, 220, 61, 22));
@@ -312,7 +312,7 @@ public:
         spinBox_speed_4->setGeometry(QRect(260, 220, 61, 22));
         spinBox_speed_4->setMinimum(1);
         spinBox_speed_4->setMaximum(100);
-        spinBox_speed_4->setValue(20);
+        spinBox_speed_4->setValue(15);
         label_13 = new QLabel(groupBox);
         label_13->setObjectName(QStringLiteral("label_13"));
         label_13->setGeometry(QRect(740, 417, 72, 21));
@@ -327,7 +327,7 @@ public:
         spinBox_hp_5->setObjectName(QStringLiteral("spinBox_hp_5"));
         spinBox_hp_5->setGeometry(QRect(140, 420, 61, 22));
         spinBox_hp_5->setMaximum(1000);
-        spinBox_hp_5->setValue(1000);
+        spinBox_hp_5->setValue(600);
         spinBox_size_5 = new QSpinBox(groupBox);
         spinBox_size_5->setObjectName(QStringLiteral("spinBox_size_5"));
         spinBox_size_5->setGeometry(QRect(510, 420, 61, 22));
@@ -350,7 +350,7 @@ public:
         spinBox_speed_5->setGeometry(QRect(260, 420, 61, 22));
         spinBox_speed_5->setMinimum(1);
         spinBox_speed_5->setMaximum(100);
-        spinBox_speed_5->setValue(20);
+        spinBox_speed_5->setValue(27);
         label_14 = new QLabel(groupBox);
         label_14->setObjectName(QStringLiteral("label_14"));
         label_14->setGeometry(QRect(740, 267, 72, 21));
@@ -388,7 +388,7 @@ public:
         spinBox_speed_6->setGeometry(QRect(260, 270, 61, 22));
         spinBox_speed_6->setMinimum(1);
         spinBox_speed_6->setMaximum(100);
-        spinBox_speed_6->setValue(20);
+        spinBox_speed_6->setValue(15);
         label_15 = new QLabel(groupBox);
         label_15->setObjectName(QStringLiteral("label_15"));
         label_15->setGeometry(QRect(740, 367, 72, 21));
@@ -403,7 +403,7 @@ public:
         spinBox_hp_7->setObjectName(QStringLiteral("spinBox_hp_7"));
         spinBox_hp_7->setGeometry(QRect(140, 370, 61, 22));
         spinBox_hp_7->setMaximum(1000);
-        spinBox_hp_7->setValue(1000);
+        spinBox_hp_7->setValue(600);
         spinBox_size_7 = new QSpinBox(groupBox);
         spinBox_size_7->setObjectName(QStringLiteral("spinBox_size_7"));
         spinBox_size_7->setGeometry(QRect(510, 370, 61, 22));
@@ -426,13 +426,14 @@ public:
         spinBox_speed_7->setGeometry(QRect(260, 370, 61, 22));
         spinBox_speed_7->setMinimum(1);
         spinBox_speed_7->setMaximum(100);
-        spinBox_speed_7->setValue(20);
+        spinBox_speed_7->setValue(26);
+        spinBox_speed_7->setDisplayIntegerBase(10);
         spinBox_speed_8 = new QSpinBox(groupBox);
         spinBox_speed_8->setObjectName(QStringLiteral("spinBox_speed_8"));
         spinBox_speed_8->setGeometry(QRect(260, 320, 61, 22));
         spinBox_speed_8->setMinimum(1);
         spinBox_speed_8->setMaximum(100);
-        spinBox_speed_8->setValue(20);
+        spinBox_speed_8->setValue(22);
         label_16 = new QLabel(groupBox);
         label_16->setObjectName(QStringLiteral("label_16"));
         label_16->setGeometry(QRect(740, 317, 72, 21));
@@ -441,7 +442,7 @@ public:
         spinBox_hp_8->setObjectName(QStringLiteral("spinBox_hp_8"));
         spinBox_hp_8->setGeometry(QRect(140, 320, 61, 22));
         spinBox_hp_8->setMaximum(1000);
-        spinBox_hp_8->setValue(1000);
+        spinBox_hp_8->setValue(500);
         spinBox_size_8 = new QSpinBox(groupBox);
         spinBox_size_8->setObjectName(QStringLiteral("spinBox_size_8"));
         spinBox_size_8->setGeometry(QRect(510, 320, 61, 22));
@@ -524,7 +525,7 @@ public:
         spinBox_reproduceAge->setFont(font3);
         spinBox_reproduceAge->setMinimum(1);
         spinBox_reproduceAge->setMaximum(100);
-        spinBox_reproduceAge->setValue(5);
+        spinBox_reproduceAge->setValue(3);
         label_20 = new QLabel(groupBox_2);
         label_20->setObjectName(QStringLiteral("label_20"));
         label_20->setGeometry(QRect(500, 80, 91, 21));
@@ -539,7 +540,7 @@ public:
         spinBox_reproduceHp->setFont(font3);
         spinBox_reproduceHp->setMinimum(1);
         spinBox_reproduceHp->setMaximum(100);
-        spinBox_reproduceHp->setValue(80);
+        spinBox_reproduceHp->setValue(65);
         label_22 = new QLabel(groupBox_2);
         label_22->setObjectName(QStringLiteral("label_22"));
         label_22->setGeometry(QRect(260, 120, 21, 21));
@@ -554,7 +555,7 @@ public:
         spinBox_reproduceProportion->setFont(font3);
         spinBox_reproduceProportion->setMinimum(1);
         spinBox_reproduceProportion->setMaximum(100);
-        spinBox_reproduceProportion->setValue(40);
+        spinBox_reproduceProportion->setValue(80);
         label_24 = new QLabel(groupBox_2);
         label_24->setObjectName(QStringLiteral("label_24"));
         label_24->setGeometry(QRect(500, 120, 141, 21));
@@ -630,7 +631,7 @@ public:
         label_type_3->setText(QString());
         label_12->setText(QApplication::translate("Dialog", "<html><head/><body><p align=\"center\">1</p></body></html>", Q_NULLPTR));
         label_type_4->setText(QString());
-        label_13->setText(QApplication::translate("Dialog", "<html><head/><body><p align=\"center\">4</p></body></html>", Q_NULLPTR));
+        label_13->setText(QApplication::translate("Dialog", "<html><head/><body><p align=\"center\">3</p></body></html>", Q_NULLPTR));
         label_type_5->setText(QString());
         label_14->setText(QApplication::translate("Dialog", "<html><head/><body><p align=\"center\">1</p></body></html>", Q_NULLPTR));
         label_type_6->setText(QString());
